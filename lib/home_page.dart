@@ -238,10 +238,40 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 MaterialButton(
                   color: Colors.blue,
-                  onPressed: () async {
-                    XFile? file = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
-                    homePageController.imagePath.value = file!.path;
+                  onPressed: () {
+                    showDialog(context: context, builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Choose"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ListTile(
+                              leading: const Icon(Icons.camera),
+                              title: const Text("Camera"),
+                              onTap: () async{
+                                Navigator.of(context).pop();
+                                XFile? file = await ImagePicker()
+                                    .pickImage(source: ImageSource.camera);
+                                homePageController.imagePath.value = file!.path;
+                              },
+                            ),
+                            const Divider(
+                              color: Colors.black,
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.photo),
+                              title: const Text("Gallery"),
+                              onTap: () async{
+                                Navigator.of(context).pop();
+                                XFile? file = await ImagePicker()
+                                    .pickImage(source: ImageSource.gallery);
+                                homePageController.imagePath.value = file!.path;
+                              },
+                            )
+                          ],
+                        ),
+                      );
+                    });
                   },
                   child: const Text(
                     "Select Image",
