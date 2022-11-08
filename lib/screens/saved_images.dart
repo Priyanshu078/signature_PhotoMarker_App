@@ -1,10 +1,11 @@
 import 'package:blup_assignment/state_management/home_page_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
+// import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
+import 'package:share_extend/share_extend.dart';
 import 'dart:io';
 
-import 'package:share_plus/share_plus.dart';
+// import 'package:share_plus/share_plus.dart';
 
 // import 'package:share_plus/share_plus.dart';
 
@@ -97,11 +98,12 @@ class ShowImage extends StatelessWidget {
               IconButton(
                   onPressed: () async{
                 // Share.shareXFiles([XFile(path)],text: "image");
-                await FlutterShare.shareFile(
-                    title: 'image',
-                    filePath: path,
-                    fileType: 'image/png'
-                );
+                // await FlutterShare.shareFile(
+                //     title: 'image',
+                //     filePath: path,
+                //     fileType: 'image/png'
+                // );
+                    ShareExtend.share(path,'image');
               }, icon: const Icon(Icons.share))
             ],
           ),
